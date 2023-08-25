@@ -81,9 +81,15 @@ class Dokumentasi extends Admin
     // tampil dokumentasi
     public function tampil_dokumentasi()
     {
+        $keyword = $this->request->getVar('keyword');
+        if ($keyword) {
+            $dokumentasi = $this->dokumentasiModel->search($keyword);
+        } else {
+            $dokumentasi = $this->dokumentasiModel;
+        }
         $data = [
             'title' => 'Dokumentasi',
-            'dokumentasi' => $this->dokumentasiModel->orderBy('id_dok', 'DESC')->findAll(),
+            'dokumentasi' => $dokumentasi->orderBy('id_dok', 'DESC')->findAll(),
         ];
         return view('admin/dokumentasi/tampil_dokumentasi', $data);
     }

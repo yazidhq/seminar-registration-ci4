@@ -58,10 +58,16 @@ class Admin extends BaseController
     // halaman data seminar
     public function tampil_seminar()
     {
+        $keyword = $this->request->getVar('keyword');
+        if ($keyword) {
+            $seminar = $this->seminarModel->search($keyword);
+        } else {
+            $seminar = $this->seminarModel;
+        }
         $data = [
             'title' => 'Seminar',
-            'seminar' => $this->seminarModel->orderBy('id_seminar', 'DESC')->paginate(4, 'seminar'),
-            'pager' => $this->seminarModel->pager
+            'seminar' => $seminar->orderBy('id_seminar', 'DESC')->paginate(4, 'seminar'),
+            'pager' => $seminar->pager
         ];
         return view('admin/tampil_seminar', $data);
     }

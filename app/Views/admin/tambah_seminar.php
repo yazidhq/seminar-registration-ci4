@@ -51,7 +51,7 @@
 
                                         <div class="mb-3">
                                             <label class="form-label" for="kontak">Kontak</label>
-                                            <input class="form-control" type="text" id="kontak" name="kontak" placeholder="Kontak yang dapat dihubungi">
+                                            <input class="form-control" type="number" id="kontak" name="kontak" placeholder="Kontak yang dapat dihubungi">
                                         </div>
 
                                         <div class="mb-3">

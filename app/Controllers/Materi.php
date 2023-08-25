@@ -35,9 +35,15 @@ class Materi extends Admin
     // tampil materi
     public function tampil_materi()
     {
+        $keyword = $this->request->getVar('keyword');
+        if ($keyword) {
+            $materi = $this->materiModel->search($keyword);
+        } else {
+            $materi = $this->materiModel;
+        }
         $data = [
             'title' => 'Materi',
-            'materi' => $this->materiModel->orderBy('id_materi', 'DESC')->findAll(),
+            'materi' => $materi->orderBy('id_materi', 'DESC')->findAll(),
         ];
         return view('admin/materi/tampil_materi', $data);
     }
